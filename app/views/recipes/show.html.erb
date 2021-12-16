@@ -1,0 +1,17 @@
+<h1><%= @recipe.title %></h1>
+
+<p><%= @recipe.instructions %></p>
+
+<ul>
+  <li><%= link_to "Edit", edit_recipe_path(@recipe) %></li>
+  <li><%= link_to "Destroy", recipe_path(@recipe),
+                  method: :delete,
+                  data: { confirm: "Are you sure?" } %></li>
+</ul>
+
+<h2>Ingredients</h2>
+<%= render @recipe.ingredients %>
+
+<h2>Add a ingredient:</h2>
+<%= render 'ingredients/form' %>
+

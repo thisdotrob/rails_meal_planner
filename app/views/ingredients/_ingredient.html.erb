@@ -1,0 +1,21 @@
+<p>
+  <strong>Name:</strong>
+  <%= ingredient.food_item_name %>
+</p>
+
+<p>
+  <strong>Quantity per serving:</strong>
+  <%= ingredient.quantity_per_serving %>
+</p>
+
+<p>
+  <strong>Unit:</strong>
+  <%= ingredient.food_item_unit %>
+</p>
+
+<p>
+  <%= link_to 'Destroy Ingredient', [ingredient.recipe, ingredient],
+              method: :delete,
+              data: { confirm: "Are you sure?" } %>
+</p>
+

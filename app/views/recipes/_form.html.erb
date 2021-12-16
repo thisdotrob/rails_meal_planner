@@ -1,0 +1,22 @@
+<%= form_with model: recipe do |form| %>
+  <div>
+    <%= form.label :title %><br>
+    <%= form.text_field :title %>
+    <% recipe.errors.full_messages_for(:title).each do |message| %>
+      <div><%= message %></div>
+    <% end %>
+  </div>
+
+  <div>
+    <%= form.label :instructions %><br>
+    <%= form.text_area :instructions %><br>
+    <% recipe.errors.full_messages_for(:instructions).each do |message| %>
+      <div><%= message %></div>
+    <% end %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>
+

@@ -1,0 +1,18 @@
+<%= form_with model: [ @recipe, @recipe.ingredients.build ] do |form| %>
+  <p>
+    <%= form.label :food_item_name %><br>
+    <%= form.text_field :food_item_name %>
+  </p>
+  <p>
+    <%= form.label :quantity_per_serving %><br>
+    <%= form.text_field :quantity_per_serving %>
+  </p>
+  <p>
+    <%= form.label :food_item_unit %><br>
+    <%= form.text_field :food_item_unit %>
+  </p>
+  <p>
+    <%= form.submit %>
+  </p>
+<% end %>
+
