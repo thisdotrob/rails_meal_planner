@@ -1,0 +1,12 @@
+<h1>Food Items</h1>
+
+<ul>
+  <% @food_items.each do |food_item| %>
+    <li>
+      <%= link_to food_item.name, food_item %>
+    </li>
+  <% end %>
+</ul>
+
+<%= link_to "New Food Item", new_food_item_path %>
+
