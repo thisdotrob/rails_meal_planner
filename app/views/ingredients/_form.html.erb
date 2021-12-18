@@ -1,7 +1,14 @@
+<%= form_with url: recipe_path(@recipe), method: :get do |form| %>
+  <%= form.label :food_item_name_query, "Search for ingredient:" %>
+  <%= form.text_field :food_item_name_query, value: @food_item_name_query %>
+  <%= form.submit "Search" %>
+<% end %>
+
 <%= form_with model: [ @recipe, @recipe.ingredients.build ] do |form| %>
+  <%= form.hidden_field :food_item_id, value: @food_item_search_result&.id %>
   <p>
     <%= form.label :food_item_name %><br>
-    <%= form.text_field :food_item_name %>
+    <%= form.text_field :food_item_name, value: @food_item_search_result&.name %>
   </p>
   <p>
     <%= form.label :quantity_per_serving %><br>
@@ -9,7 +16,7 @@
   </p>
   <p>
     <%= form.label :food_item_unit %><br>
-    <%= form.text_field :food_item_unit %>
+    <%= form.text_field :food_item_unit, value: @food_item_search_result&.unit %>
   </p>
   <p>
     <%= form.submit %>
