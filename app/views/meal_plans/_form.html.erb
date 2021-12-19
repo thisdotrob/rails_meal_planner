@@ -1,0 +1,22 @@
+<%= form_with model: meal_plan do |form| %>
+  <div>
+    <%= form.label :date_range_start %><br>
+    <%= form.date_field :date_range_start, value: meal_plan.date_range&.min  %>
+    <% meal_plan.errors.full_messages_for(:date_range_start).each do |message| %>
+      <div><%= message %></div>
+    <% end %>
+  </div>
+
+  <div>
+    <%= form.label :date_range_end %><br>
+    <%= form.date_field :date_range_end, value: meal_plan.date_range&.max  %><br>
+    <% meal_plan.errors.full_messages_for(:date_range_end).each do |message| %>
+      <div><%= message %></div>
+    <% end %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>
+

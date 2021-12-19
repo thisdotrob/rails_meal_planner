@@ -1,0 +1,12 @@
+<h1>MealPlans</h1>
+
+<ul>
+  <% @meal_plans.each do |meal_plan| %>
+    <li>
+      <%= link_to "#{meal_plan.date_range.min} - #{meal_plan.date_range.max}", meal_plan %>
+    </li>
+  <% end %>
+</ul>
+
+<%= link_to "New MealPlan", new_meal_plan_path %>
+
