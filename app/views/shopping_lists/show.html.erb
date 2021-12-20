@@ -1,1 +1,10 @@
 <%= @shopping_list %>
+
+<%= render @shopping_list.shopping_list_items %>
+
+<ul>
+  <li><%= link_to "Destroy", meal_plan_shopping_list_path(),
+                  method: :delete,
+                  data: { confirm: "Are you sure?" } %></li>
+</ul>
+
