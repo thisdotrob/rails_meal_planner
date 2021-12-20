@@ -1,0 +1,42 @@
+<h1>New Meal</h1>
+
+<p>
+  <%= form_with url: new_meal_plan_meal_path(@meal_plan), method: :get do |form| %>
+    <%= form.label :recipe_title_query, "Search for recipe:" %>
+    <%= form.text_field :recipe_title_query, value: @recipe_title_query %>
+    <%= form.submit "Search" %>
+  <% end %>
+</p>
+
+<p>
+  <%= form_with model: [ @meal_plan, @meal ]  do |form| %>
+    <% @meal.errors.full_messages.each do |message| %>
+      <div><%= message %></div>
+    <% end %>
+  
+    <p>
+      <%= form.hidden_field :recipe_id, value: @recipe_search_result&.id %>
+      <%= form.label :recipe_title %><br>
+      <%= form.text_field :recipe_title, disabled: true, value: @recipe_search_result&.title  %>
+    </p>
+  
+    <p>
+      <%= form.label :title %><br>
+      <%= form.text_field :title %>
+    </p>
+
+    <p>
+      <%= form.label :servings %><br>
+      <%= form.number_field :servings, step: 0.5 %>
+    </p>
+  
+    <p>
+      <%= form.label :eat_at %><br>
+      <%= form.datetime_field :eat_at %><br>
+    </p>
+  
+    <p>
+      <%= form.submit %>
+    </p>
+  <% end %>
+</p>
