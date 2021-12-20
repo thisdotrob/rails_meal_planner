@@ -7,5 +7,6 @@ Rails.application.routes.draw do
   end
   resources :meal_plans do
     resources :meals
+    resource :shopping_list
   end
 end
