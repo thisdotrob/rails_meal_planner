@@ -12,9 +12,9 @@ class ShoppingListsController < ApplicationController
           }
           if !item_data
             shopping_list_items_data << {
-              food_item_id: ingredient.food_item_id,
-              food_item_name: ingredient.food_item_name,
-              food_item_unit: ingredient.food_item_unit,
+              food_item_id: ingredient.food_item.id,
+              food_item_name: ingredient.food_item.name,
+              food_item_unit: ingredient.food_item.unit,
               quantity: quantity,
             }
           else
