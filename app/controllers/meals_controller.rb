@@ -8,7 +8,7 @@ class MealsController < ApplicationController
       @recipe = Recipe.find(params[:recipe_id])
     end
     @meal_plan = MealPlan.find(params[:meal_plan_id])
-    @meal = Meal.new
+    @meal = Meal.new(servings: 1, eat_at: Time.new.change(hour: 12))
   end
 
   def create
