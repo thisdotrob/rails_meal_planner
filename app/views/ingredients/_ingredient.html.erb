@@ -4,18 +4,20 @@
 </p>
 
 <p>
-  <strong>Quantity per serving:</strong>
-  <%= ingredient.quantity_per_serving %>
-</p>
-
-<p>
   <strong>Unit:</strong>
   <%= ingredient.food_item.unit %>
 </p>
 
 <p>
-  <%= link_to 'Destroy Ingredient', [ingredient.recipe, ingredient],
-              method: :delete,
-              data: { confirm: "Are you sure?" } %>
+  <strong>Quantity per serving:</strong>
+  <%= ingredient.quantity_per_serving %>
 </p>
 
+<ul>
+  <li>
+    <%= link_to "Edit", edit_recipe_ingredient_path(ingredient.recipe, ingredient) %>
+  </li>
+  <li><%= link_to "Delete", [ingredient.recipe, ingredient],
+                  method: :delete,
+                  data: { confirm: "Are you sure?" } %></li>
+</ul>

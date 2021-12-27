@@ -1,0 +1,47 @@
+<h1>New Ingredient</h1>
+
+<% if !@food_item %>
+  <%= form_with url: new_recipe_ingredient_path, method: :get do |form| %>
+    <%= form.label :query, "Search for existing FoodItem" %>
+    <%= form.text_field :query, value: @query %>
+    <%= form.submit "Search" %>
+  <% end %>
+
+  <% if @search_results %>
+    <ul>
+      <% @search_results.each do |food_item| %>
+        <li>
+          <%= link_to food_item.name, new_recipe_ingredient_path(food_item_id: food_item.id) %>
+        </li>
+      <% end %>
+    </ul>
+  <% end %>
+
+  <%= form_with model: @new_food_item, url: food_items_path(@new_food_item, redirect: new_recipe_ingredient_path), html: {method: :post} do |form| %>
+    Add a new FoodItem:
+    <p>
+      <%= form.label :unit %>
+      <%= form.text_field :unit %>
+    </p>
+    <p>
+      <%= form.label :name %>
+      <%= form.text_field :name %>
+    </p>
+    <p>
+      <%= form.submit %>
+    </p>
+  <% end %>
+<% else %>
+  <%= form_with model: [ @recipe, @ingredient ] do |form| %>
+    <%= form.hidden_field :food_item_id, value: @food_item.id %>
+    <p><h2><%= @food_item.name %></h2></p>
+    <p>
+      <%= form.label :quantity_per_serving %><br>
+      <%= form.text_field :quantity_per_serving %>
+      <%= @food_item.unit %>
+    </p>
+    <p>
+      <%= form.submit %>
+    </p>
+  <% end %>
+<% end %>

@@ -11,8 +11,4 @@
 
 <h2>Ingredients</h2>
 <%= render @recipe.ingredients %>
-
-<h2>Add an ingredient:</h2>
-
-<%= render 'ingredients/form' %>
-
+<%= link_to "New Ingredient", new_recipe_ingredient_path(@recipe) %>

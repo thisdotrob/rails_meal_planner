@@ -1,0 +1,12 @@
+<h1><%= @ingredient.food_item.name %></h1>
+
+<%= form_with model: [ @recipe, @ingredient ] do |form| %>
+  <p>
+    <%= form.label :quantity_per_serving %><br>
+    <%= form.text_field :quantity_per_serving %>
+    <%= @ingredient.food_item.unit %>
+  </p>
+  <p>
+    <%= form.submit "Update" %>
+  </p>
+<% end %>

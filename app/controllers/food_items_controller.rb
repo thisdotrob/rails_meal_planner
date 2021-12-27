@@ -15,7 +15,11 @@ class FoodItemsController < ApplicationController
     @food_item = FoodItem.new(food_item_params)
 
     if @food_item.save
-      redirect_to @food_item
+      if params[:redirect]
+        redirect_to params[:redirect] + "?food_item_id=#{@food_item.id}"
+      else
+        redirect_to @food_item
+      end
     else
       render :new
     end
