@@ -1,9 +1,14 @@
 class MealsController < ApplicationController
   def new
+    @query = params[:query]
+    if @query
+      @search_results = Recipe.where("title ILIKE ?", "%#{@query}%")
+    end
+    if params[:recipe_id]
+      @recipe = Recipe.find(params[:recipe_id])
+    end
     @meal_plan = MealPlan.find(params[:meal_plan_id])
     @meal = Meal.new
-    @recipe_title_query = params[:recipe_title_query]
-    @recipe_search_result = Recipe.find_by(title: @recipe_title_query)
   end
 
   def create

@@ -1,25 +1,27 @@
 <h1>New Meal</h1>
 
-<p>
-  <%= form_with url: new_meal_plan_meal_path(@meal_plan), method: :get do |form| %>
-    <%= form.label :recipe_title_query, "Search for recipe:" %>
-    <%= form.text_field :recipe_title_query, value: @recipe_title_query %>
+<% if !@recipe %>
+  <%= form_with url: new_meal_plan_meal_path, method: :get do |form| %>
+    <%= form.label :query, "Search for recipe" %>
+    <%= form.text_field :query, value: @query %>
     <%= form.submit "Search" %>
   <% end %>
-</p>
 
-<p>
-  <%= form_with model: [ @meal_plan, @meal ]  do |form| %>
-    <% @meal.errors.full_messages.each do |message| %>
-      <div><%= message %></div>
-    <% end %>
-  
-    <p>
-      <%= form.hidden_field :recipe_id, value: @recipe_search_result&.id %>
-      <%= form.label :recipe_title %><br>
-      <%= form.text_field :recipe_title, disabled: true, value: @recipe_search_result&.title  %>
-    </p>
-  
+  <% if @search_results %>
+    <ul>
+      <% @search_results.each do |recipe| %>
+        <li>
+          <%= link_to recipe.title, new_meal_plan_meal_path(recipe_id: recipe.id) %>
+        </li>
+      <% end %>
+    </ul>
+  <% end %>
+<% else %>
+  <%= form_with model: [ @meal_plan, @meal ] do |form| %>
+    <%= form.hidden_field :recipe_id, value: @recipe.id %>
+
+    <p><h2><%= @recipe.title %></h2></p>
+
     <p>
       <%= form.label :title %><br>
       <%= form.text_field :title %>
@@ -39,4 +41,5 @@
       <%= form.submit %>
     </p>
   <% end %>
-</p>
+<% end %>
+
