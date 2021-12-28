@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   root "meal_plans#index"
 
   resources :food_items
+  resources :meals
   resources :recipes do
     resources :ingredients
   end
@@ -12,4 +13,5 @@ Rails.application.routes.draw do
   resources :meal_plan_days do
     resources :meals
   end
+  post '/meal_plan_days/:id/copy', to: 'meal_plan_days#copy', as: 'copy_meal_plan_day'
 end

@@ -21,6 +21,13 @@ class MealsController < ApplicationController
     end
   end
 
+  def destroy
+    @meal = Meal.find(params[:id])
+    @meal_plan = @meal.meal_plan_day.meal_plan
+    @meal.destroy
+    redirect_to @meal_plan
+  end
+
   private
     def meal_params
       params.require(:meal).permit(:title, :eat_at, :servings, :recipe_id)

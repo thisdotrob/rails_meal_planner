@@ -1,4 +1,5 @@
 <ul>
   <li><%= link_to "Add Meal", new_meal_plan_day_meal_path(meal_plan_day) %></li>
+  <li><%= link_to "Copy to rest of MealPlan", copy_meal_plan_day_path(meal_plan_day), method: :post %></li>
 </ul>
 <%= render meal_plan_day.meals %>
