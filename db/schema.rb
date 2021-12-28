@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_12_27_143136) do
+ActiveRecord::Schema.define(version: 2021_12_28_095514) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -32,6 +32,14 @@ ActiveRecord::Schema.define(version: 2021_12_27_143136) do
     t.index ["recipe_id"], name: "index_ingredients_on_recipe_id"
   end
 
+  create_table "meal_plan_days", force: :cascade do |t|
+    t.date "date"
+    t.bigint "meal_plan_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["meal_plan_id"], name: "index_meal_plan_days_on_meal_plan_id"
+  end
+
   create_table "meal_plans", force: :cascade do |t|
     t.daterange "date_range", null: false
     t.datetime "created_at", precision: 6, null: false
@@ -40,13 +48,13 @@ ActiveRecord::Schema.define(version: 2021_12_27_143136) do
 
   create_table "meals", force: :cascade do |t|
     t.decimal "servings", null: false
-    t.bigint "meal_plan_id", null: false
     t.bigint "recipe_id", null: false
     t.datetime "eat_at", null: false
     t.string "title", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["meal_plan_id"], name: "index_meals_on_meal_plan_id"
+    t.bigint "meal_plan_day_id", null: false
+    t.index ["meal_plan_day_id"], name: "index_meals_on_meal_plan_day_id"
     t.index ["recipe_id"], name: "index_meals_on_recipe_id"
   end
 
@@ -77,7 +85,8 @@ ActiveRecord::Schema.define(version: 2021_12_27_143136) do
 
   add_foreign_key "ingredients", "food_items"
   add_foreign_key "ingredients", "recipes"
-  add_foreign_key "meals", "meal_plans"
+  add_foreign_key "meal_plan_days", "meal_plans"
+  add_foreign_key "meals", "meal_plan_days"
   add_foreign_key "meals", "recipes"
   add_foreign_key "shopping_list_items", "food_items"
   add_foreign_key "shopping_list_items", "shopping_lists"

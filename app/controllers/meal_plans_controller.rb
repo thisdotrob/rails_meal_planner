@@ -18,6 +18,9 @@ class MealPlansController < ApplicationController
     @meal_plan = MealPlan.new(date_range: d1..d2)
 
     if @meal_plan.save
+      (d1..d2).each { |date|
+        @meal_plan.meal_plan_days.create(date: date)
+      }
       redirect_to @meal_plan
     else
       render :new

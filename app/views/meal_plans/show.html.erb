@@ -5,7 +5,6 @@
   <li><%= link_to "Destroy", meal_plan_path(@meal_plan),
                   method: :delete,
                   data: { confirm: "Are you sure?" } %></li>
-  <li><%= link_to "Add Meal", new_meal_plan_meal_path(@meal_plan) %></li>
   <li><%= link_to "Shopping List", meal_plan_shopping_list_path(@meal_plan) %></li>
 </ul>
 
@@ -16,7 +15,7 @@
 <% @meal_plan.date_range.each do |date| %>
   <li>
     <h3><%= date %></h3>
-    <%= render @meal_plan.meals.filter { |meal| meal.eat_at.to_date == date } %>
+    <%= render @meal_plan.meal_plan_days.find { |meal_plan_day| meal_plan_day.date == date } %>
   </li>
 <% end %>
 </ul>

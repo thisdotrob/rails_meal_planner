@@ -6,7 +6,10 @@ Rails.application.routes.draw do
     resources :ingredients
   end
   resources :meal_plans do
-    resources :meals
+    resources :meal_plan_days
     resource :shopping_list
+  end
+  resources :meal_plan_days do
+    resources :meals
   end
 end

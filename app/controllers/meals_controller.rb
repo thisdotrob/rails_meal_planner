@@ -7,15 +7,15 @@ class MealsController < ApplicationController
     if params[:recipe_id]
       @recipe = Recipe.find(params[:recipe_id])
     end
-    @meal_plan = MealPlan.find(params[:meal_plan_id])
+    @meal_plan_day = MealPlanDay.find(params[:meal_plan_day_id])
     @meal = Meal.new(servings: 1, eat_at: Time.new.change(hour: 12))
   end
 
   def create
-    @meal_plan = MealPlan.find(params[:meal_plan_id])
-    @meal = @meal_plan.meals.build(meal_params)
+    @meal_plan_day = MealPlanDay.find(params[:meal_plan_day_id])
+    @meal = @meal_plan_day.meals.build(meal_params)
     if @meal.save
-      redirect_to @meal_plan
+      redirect_to @meal_plan_day.meal_plan
     else
       render :new
     end
