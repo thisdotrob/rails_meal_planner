@@ -12,13 +12,10 @@ class MealPlansController < ApplicationController
   end
 
   def create
-    d1 = Date.parse(meal_plan_params[:date_range_start])
-    d2 = Date.parse(meal_plan_params[:date_range_end])
-
-    @meal_plan = MealPlan.new(date_range: d1..d2)
+    @meal_plan = MealPlan.new(meal_plan_params)
 
     if @meal_plan.save
-      (d1..d2).each { |date|
+      @meal_plan.date_range.each { |date|
         @meal_plan.meal_plan_days.create(date: date)
       }
       redirect_to @meal_plan
@@ -34,10 +31,7 @@ class MealPlansController < ApplicationController
   def update
     @meal_plan = MealPlan.find(params[:id])
 
-    d1 = Date.parse(meal_plan_params[:date_range_start])
-    d2 = Date.parse(meal_plan_params[:date_range_end])
-
-    if @meal_plan.update(date_range: d1..d2)
+    if @meal_plan.update(meal_plan_params)
       redirect_to @meal_plan
     else
       render :edit
@@ -53,6 +47,13 @@ class MealPlansController < ApplicationController
 
   private
     def meal_plan_params
-      params.require(:meal_plan).permit(:date_range_start, :date_range_end)
+      p = params.require(:meal_plan).permit(:date_range_start, :date_range_end)
+      if p[:date_range_start] != "" && p[:date_range_end] != ""
+        d1 = Date.parse(p[:date_range_start])
+        d2 = Date.parse(p[:date_range_end])
+        { date_range: d1..d2 }
+      else
+        {}
+      end
     end
 end

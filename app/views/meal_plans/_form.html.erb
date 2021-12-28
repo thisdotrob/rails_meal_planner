@@ -1,22 +1,19 @@
 <%= form_with model: meal_plan do |form| %>
-  <div>
+  <% meal_plan.errors.full_messages.each do |message| %>
+    <p><%= message %></p>
+  <% end %>
+  <p>
     <%= form.label :date_range_start %><br>
     <%= form.date_field :date_range_start, value: meal_plan.date_range&.min  %>
-    <% meal_plan.errors.full_messages_for(:date_range_start).each do |message| %>
-      <div><%= message %></div>
-    <% end %>
-  </div>
+  </p>
 
-  <div>
+  <p>
     <%= form.label :date_range_end %><br>
     <%= form.date_field :date_range_end, value: meal_plan.date_range&.max  %><br>
-    <% meal_plan.errors.full_messages_for(:date_range_end).each do |message| %>
-      <div><%= message %></div>
-    <% end %>
-  </div>
+  </p>
 
-  <div>
+  <p>
     <%= form.submit %>
-  </div>
+  </p>
 <% end %>
 
