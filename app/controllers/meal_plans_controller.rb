@@ -45,7 +45,7 @@ class MealPlansController < ApplicationController
     @meal_plan = MealPlan.find(params[:id])
     @meal_plan.destroy
 
-    redirect_to root_path
+    redirect_to meal_plans_path
   end
 
   private
