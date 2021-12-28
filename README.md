@@ -4,5 +4,12 @@
 
 ```
 git push heroku master
-heroku run rake db:migrate
+heroku run rails db:migrate
+```
+
+## Reset production DB
+
+```
+heroku pg:reset DATABASE
+heroku run rails db:migrate
 ```
