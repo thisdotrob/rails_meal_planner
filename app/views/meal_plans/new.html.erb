@@ -1,3 +1,21 @@
 <h1>New MealPlan</h1>
 
-<%= render "form", meal_plan: @meal_plan %>
+<%= form_with model: @meal_plan do |form| %>
+  <% @meal_plan.errors.full_messages.each do |message| %>
+    <p><%= message %></p>
+  <% end %>
+  <p>
+    <%= form.label :date_range_start %><br>
+    <%= form.date_field :date_range_start, value: @meal_plan.date_range&.min  %>
+  </p>
+
+  <p>
+    <%= form.label :date_range_end %><br>
+    <%= form.date_field :date_range_end, value: @meal_plan.date_range&.max  %><br>
+  </p>
+
+  <p>
+    <%= form.submit %>
+  </p>
+<% end %>
+

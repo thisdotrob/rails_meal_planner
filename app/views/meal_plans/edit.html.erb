@@ -1,3 +1,27 @@
 <h1>Edit MealPlan <%= @meal_plan.date_range.min %> - <%= @meal_plan.date_range.max %> </h1>
 
-<%= render "form", meal_plan: @meal_plan %>
+<%= form_with model: @meal_plan do |form| %>
+  <% @meal_plan.errors.full_messages.each do |message| %>
+    <p><%= message %></p>
+  <% end %>
+  <p>
+    <table>
+      <tr>
+        <th>Day</th>
+        <th>Note</th>
+      </tr>
+      <% @meal_plan.meal_plan_days.each do |meal_plan_day| %>
+        <tr>
+          <%= fields_for "meal_plan_day[]", meal_plan_day do |meal_plan_day_fields| %>
+            <td><%= meal_plan_day.date %> <%= meal_plan_day.date.strftime("%a") %></td>
+            <td><%= meal_plan_day_fields.text_field :note %></td>
+          <% end %>
+        </tr>
+      <% end %>
+    </table>
+  </p>
+
+  <p>
+    <%= form.submit %>
+  </p>
+<% end %>
