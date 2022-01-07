@@ -1,0 +1,15 @@
+<h1>Edit MealPlanDay</h1>
+
+<%= form_with model: @meal_plan_day do |form| %>
+  <div>
+    <%= form.label :note %><br>
+    <%= form.text_field :note %>
+    <% @meal_plan_day.errors.full_messages_for(:note).each do |message| %>
+      <div><%= message %></div>
+    <% end %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>
