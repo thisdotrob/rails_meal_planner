@@ -31,6 +31,13 @@ class MealPlansController < ApplicationController
   def update
     @meal_plan = MealPlan.find(params[:id])
 
+    params[:meal_plan_day].each do |id, meal_plan_day_params|
+      meal_plan_day = MealPlanDay.find(id)
+      if !meal_plan_day.update(meal_plan_day_params.permit(:note))
+        render :edit
+      end
+    end
+
     if @meal_plan.update(meal_plan_params)
       redirect_to @meal_plan
     else
@@ -47,13 +54,14 @@ class MealPlansController < ApplicationController
 
   private
     def meal_plan_params
-      p = params.require(:meal_plan).permit(:date_range_start, :date_range_end)
+      p = params.require(:meal_plan).permit(:date_range_start, :date_range_end, :meal_plan_day)
       if p[:date_range_start] != "" && p[:date_range_end] != ""
         d1 = Date.parse(p[:date_range_start])
         d2 = Date.parse(p[:date_range_end])
-        { date_range: d1..d2 }
-      else
-        {}
+        p[:date_range] = d1..d2
       end
+      p.delete(:date_range_start)
+      p.delete(:date_range_end)
+      p
     end
 end

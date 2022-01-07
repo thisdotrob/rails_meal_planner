@@ -13,6 +13,23 @@
   </p>
 
   <p>
+    <table>
+      <tr>
+        <th>Day</th>
+        <th>Note</th>
+      </tr>
+      <% meal_plan.meal_plan_days.each do |meal_plan_day| %>
+        <tr>
+          <%= fields_for "meal_plan_day[]", meal_plan_day do |meal_plan_day_fields| %>
+            <td><%= meal_plan_day.date %> <%= meal_plan_day.date.strftime("%a") %></td>
+            <td><%= meal_plan_day_fields.text_field :note %></td>
+          <% end %>
+        </tr>
+      <% end %>
+    </table>
+  </p>
+
+  <p>
     <%= form.submit %>
   </p>
 <% end %>
