@@ -14,7 +14,6 @@
 <ul>
 <% @meal_plan.date_range.each do |date| %>
   <li>
-    <h3><%= date %> <%= date.strftime("%a") %></h3>
     <%= render @meal_plan.meal_plan_days.find { |meal_plan_day| meal_plan_day.date == date } %>
   </li>
 <% end %>
