@@ -48,6 +48,6 @@ class FoodItemsController < ApplicationController
 
   private
     def food_item_params
-      params.require(:food_item).permit(:name, :unit, :calories, :carbs, :protein, :fat)
+      params.require(:food_item).permit(:name, :unit, :calories, :carbs, :protein, :fat, :macro_quantity)
     end
 end
