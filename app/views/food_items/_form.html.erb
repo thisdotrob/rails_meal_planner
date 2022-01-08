@@ -7,10 +7,44 @@
     <% end %>
   </div>
 
+  <% if food_item.id.nil? %>
+    <div>
+      <%= form.label :unit %><br>
+      <%= form.text_field :unit %><br>
+      <% food_item.errors.full_messages_for(:unit).each do |message| %>
+        <div><%= message %></div>
+      <% end %>
+    </div>
+  <% end %>
+
   <div>
-    <%= form.label :unit %><br>
-    <%= form.text_field :unit %><br>
-    <% food_item.errors.full_messages_for(:unit).each do |message| %>
+    <%= form.label :calories %><br>
+    <%= form.text_field :calories %><br>
+    <% food_item.errors.full_messages_for(:calories).each do |message| %>
+      <div><%= message %></div>
+    <% end %>
+  </div>
+
+  <div>
+    <%= form.label :carbs %><br>
+    <%= form.text_field :carbs %><br>
+    <% food_item.errors.full_messages_for(:carbs).each do |message| %>
+      <div><%= message %></div>
+    <% end %>
+  </div>
+
+  <div>
+    <%= form.label :protein %><br>
+    <%= form.text_field :protein %><br>
+    <% food_item.errors.full_messages_for(:protein).each do |message| %>
+      <div><%= message %></div>
+    <% end %>
+  </div>
+
+  <div>
+    <%= form.label :fat %><br>
+    <%= form.text_field :fat %><br>
+    <% food_item.errors.full_messages_for(:fat).each do |message| %>
       <div><%= message %></div>
     <% end %>
   </div>
