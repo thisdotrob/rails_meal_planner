@@ -1,4 +1,8 @@
 class MealPlanDaysController < ApplicationController
+  def show
+    @meal_plan_day = MealPlanDay.find(params[:id])
+  end
+
   def copy
     template_mpd = MealPlanDay.find(params[:id])
     template_mpd.meal_plan.meal_plan_days.each { |mpd|

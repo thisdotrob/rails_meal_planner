@@ -1,5 +1,5 @@
 <h3>
-  <%= meal_plan_day.date %>
+  <%= link_to meal_plan_day.date, meal_plan_day %>
   <%= meal_plan_day.date.strftime("%a") %>
   <%= "(#{meal_plan_day.note})" if meal_plan_day.note != '' %>
 </h3>
