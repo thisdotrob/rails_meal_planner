@@ -18,46 +18,6 @@
   <% end %>
 
   <div>
-    <%= form.label :macro_quantity %><br>
-    <%= form.text_field :macro_quantity %><br>
-    <% food_item.errors.full_messages_for(:macro_quantity).each do |message| %>
-      <div><%= message %></div>
-    <% end %>
-  </div>
-
-  <div>
-    <%= form.label :calories %><br>
-    <%= form.text_field :calories %><br>
-    <% food_item.errors.full_messages_for(:calories).each do |message| %>
-      <div><%= message %></div>
-    <% end %>
-  </div>
-
-  <div>
-    <%= form.label :carbs %><br>
-    <%= form.text_field :carbs %><br>
-    <% food_item.errors.full_messages_for(:carbs).each do |message| %>
-      <div><%= message %></div>
-    <% end %>
-  </div>
-
-  <div>
-    <%= form.label :protein %><br>
-    <%= form.text_field :protein %><br>
-    <% food_item.errors.full_messages_for(:protein).each do |message| %>
-      <div><%= message %></div>
-    <% end %>
-  </div>
-
-  <div>
-    <%= form.label :fat %><br>
-    <%= form.text_field :fat %><br>
-    <% food_item.errors.full_messages_for(:fat).each do |message| %>
-      <div><%= message %></div>
-    <% end %>
-  </div>
-
-  <div>
     <%= form.submit %>
   </div>
 <% end %>

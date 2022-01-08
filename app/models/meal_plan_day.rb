@@ -7,9 +7,7 @@ class MealPlanDay < ApplicationRecord
   def calories
     result = 0
     self.meals.each do |meal|
-      meal.recipe.ingredients.each do |ingredient|
-        result += ingredient.quantity_per_serving * ingredient.food_item.calories / ingredient.food_item.macro_quantity
-      end
+      result += meal.recipe.calories
     end
     result
   end
@@ -17,9 +15,7 @@ class MealPlanDay < ApplicationRecord
   def carbs
     result = 0
     self.meals.each do |meal|
-      meal.recipe.ingredients.each do |ingredient|
-        result += ingredient.quantity_per_serving * ingredient.food_item.carbs / ingredient.food_item.macro_quantity
-      end
+      result += meal.recipe.carbs
     end
     result
   end
@@ -27,9 +23,7 @@ class MealPlanDay < ApplicationRecord
   def protein
     result = 0
     self.meals.each do |meal|
-      meal.recipe.ingredients.each do |ingredient|
-        result += ingredient.quantity_per_serving * ingredient.food_item.protein / ingredient.food_item.macro_quantity
-      end
+      result += meal.recipe.protein
     end
     result
   end
@@ -37,9 +31,7 @@ class MealPlanDay < ApplicationRecord
   def fat
     result = 0
     self.meals.each do |meal|
-      meal.recipe.ingredients.each do |ingredient|
-        result += ingredient.quantity_per_serving * ingredient.food_item.fat / ingredient.food_item.macro_quantity
-      end
+      result += meal.recipe.fat
     end
     result
   end

@@ -1,27 +1,5 @@
 <h1><%= @food_item.name %></h1>
 
-<h3>Per <%= @food_item.macro_quantity %><%= @food_item.unit %>:</h3>
-
-<p>
-  <strong>Calories:</strong>
-  <%= @food_item.calories %>
-</p>
-
-<p>
-  <strong>Carbs:</strong>
-  <%= @food_item.carbs %>
-</p>
-
-<p>
-  <strong>Protein:</strong>
-  <%= @food_item.protein %>
-</p>
-
-<p>
-  <strong>Fat:</strong>
-  <%= @food_item.fat %>
-</p>
-
 <ul>
   <li><%= link_to "Edit", edit_food_item_path(@food_item) %></li>
   <li><%= link_to "Destroy", food_item_path(@food_item),

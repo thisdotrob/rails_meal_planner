@@ -1,6 +1,17 @@
 <h1><%= @recipe.title %></h1>
 
+<h3>Instructions</h3>
 <p><%= @recipe.instructions %></p>
+
+<h3>Ingredients</h3>
+<%= render @recipe.ingredients %>
+<%= link_to "New Ingredient", new_recipe_ingredient_path(@recipe) %>
+
+<h3>Nutrition (per serving)</h3>
+Calories: <%= @recipe.calories %><br/>
+Carbs: <%= @recipe.carbs %><br/>
+Protein: <%= @recipe.protein %><br/>
+Fat: <%= @recipe.fat %><br/>
 
 <ul>
   <li><%= link_to "Edit", edit_recipe_path(@recipe) %></li>
@@ -9,6 +20,3 @@
                   data: { confirm: "Are you sure?" } %></li>
 </ul>
 
-<h2>Ingredients</h2>
-<%= render @recipe.ingredients %>
-<%= link_to "New Ingredient", new_recipe_ingredient_path(@recipe) %>
