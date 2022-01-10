@@ -1,4 +1,4 @@
-<h1><%= @recipe.title %></h1>
+<h1><%= @recipe.title %> (<%= link_to "edit", edit_recipe_path(@recipe) %>)</h1>
 
 <h3>Instructions</h3>
 <p><%= @recipe.instructions %></p>
@@ -9,12 +9,9 @@
 </ul>
 
 <h3>Nutrition (per serving)</h3>
-Calories: <%= @recipe.calories %><br/>
-Carbs: <%= @recipe.carbs %><br/>
-Protein: <%= @recipe.protein %><br/>
-Fat: <%= @recipe.fat %><br/>
-
 <ul>
-  <li><%= link_to "Edit", edit_recipe_path(@recipe) %></li>
+  <li>Calories: <%= @recipe.calories %></li>
+  <li>Carbs: <%= @recipe.carbs %></li>
+  <li>Protein: <%= @recipe.protein %></li>
+  <li>Fat: <%= @recipe.fat %></li>
 </ul>
-
