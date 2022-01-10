@@ -1,5 +1,6 @@
 class MealPlan < ApplicationRecord
   has_many :meal_plan_days, dependent: :destroy
+  has_many :shopping_basket_items, dependent: :destroy
   has_one :shopping_list, dependent: :destroy
 
   validates :date_range, presence: true
@@ -26,13 +27,11 @@ class MealPlan < ApplicationRecord
           end
         end
       end
-      self.shopping_list.shopping_list_items.each do |shopping_list_item|
-        if shopping_list_item.done
-          item_data = result.find do |item|
-            item[:food_item_id] == shopping_list_item.food_item_id
-          end
-          item_data[:done] = true
+      self.shopping_basket_items.each do |shopping_basket_item|
+        item_data = result.find do |item|
+          item[:food_item_id] == shopping_basket_item.food_item_id
         end
+        item_data[:shopping_basket_item] = shopping_basket_item
       end
       result
   end

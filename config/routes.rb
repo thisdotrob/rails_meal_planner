@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   end
   resources :meal_plans do
     resources :meal_plan_days
+    resources :shopping_basket_items
     resource :shopping_list
   end
   resources :meal_plan_days do
