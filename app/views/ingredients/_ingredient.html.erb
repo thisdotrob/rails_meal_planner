@@ -1,23 +1,9 @@
-<p>
-  <strong>Name:</strong>
+<li>
   <%= ingredient.food_item.name %>
-</p>
-
-<p>
-  <strong>Unit:</strong>
-  <%= ingredient.food_item.unit %>
-</p>
-
-<p>
-  <strong>Quantity per serving:</strong>
   <%= ingredient.quantity_per_serving %>
-</p>
-
-<ul>
-  <li>
+  <%= ingredient.food_item.unit %> 
+  <% if editable %>
     <%= link_to "Edit", edit_recipe_ingredient_path(ingredient.recipe, ingredient) %>
-  </li>
-  <li><%= link_to "Delete", [ingredient.recipe, ingredient],
-                  method: :delete,
-                  data: { confirm: "Are you sure?" } %></li>
-</ul>
+    <%= link_to "Remove", recipe_ingredient_path(ingredient.recipe, ingredient), method: :delete %>
+  <% end %>
+</li>

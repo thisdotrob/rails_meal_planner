@@ -3,5 +3,6 @@
 <%= render "form", recipe: @recipe %>
 
 <h2>Ingredients</h2>
-<%= render partial: @recipe.ingredients, locals: {editable: true} %>
-
+<ul>
+  <%= render partial: @recipe.ingredients, locals: {editable: true} %>
+</ul>

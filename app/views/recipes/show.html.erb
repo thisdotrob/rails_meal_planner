@@ -4,7 +4,10 @@
 <p><%= @recipe.instructions %></p>
 
 <h3>Ingredients</h3>
-<%= render @recipe.ingredients %>
+<ul>
+  <%= render partial: @recipe.ingredients, locals: {editable: false} %>
+</ul>
+
 <%= link_to "New Ingredient", new_recipe_ingredient_path(@recipe) %>
 
 <h3>Nutrition (per serving)</h3>

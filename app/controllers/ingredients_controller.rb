@@ -31,7 +31,7 @@ class IngredientsController < ApplicationController
     @recipe = Recipe.find(params[:recipe_id])
     @ingredient = @recipe.ingredients.find(params[:id])
     if @ingredient.update(ingredient_params)
-      redirect_to @recipe
+      redirect_to edit_recipe_path(@recipe)
     else
       render :edit
     end
@@ -41,7 +41,7 @@ class IngredientsController < ApplicationController
     @recipe = Recipe.find(params[:recipe_id])
     @ingredient = @recipe.ingredients.find(params[:id])
     @ingredient.destroy
-    redirect_to recipe_path(@recipe)
+    redirect_to edit_recipe_path(@recipe)
   end
 
   private
