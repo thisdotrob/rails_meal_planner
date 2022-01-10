@@ -6,3 +6,4 @@
 <ul>
   <%= render partial: @recipe.ingredients, locals: {editable: true} %>
 </ul>
+<%= link_to "New Ingredient", new_recipe_ingredient_path(@recipe) %>

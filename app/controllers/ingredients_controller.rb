@@ -19,7 +19,7 @@ class IngredientsController < ApplicationController
       params[:ingredient][:food_item_id] = food_item.id
     end
     @ingredient = @recipe.ingredients.create(ingredient_params)
-    redirect_to recipe_path(@recipe)
+    redirect_to edit_recipe_path(@recipe)
   end
 
   def edit

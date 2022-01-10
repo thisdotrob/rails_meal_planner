@@ -8,8 +8,6 @@
   <%= render partial: @recipe.ingredients, locals: {editable: false} %>
 </ul>
 
-<%= link_to "New Ingredient", new_recipe_ingredient_path(@recipe) %>
-
 <h3>Nutrition (per serving)</h3>
 Calories: <%= @recipe.calories %><br/>
 Carbs: <%= @recipe.carbs %><br/>
