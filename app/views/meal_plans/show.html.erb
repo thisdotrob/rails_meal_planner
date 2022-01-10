@@ -2,8 +2,16 @@
 <%= link_to "Destroy", meal_plan_path(@meal_plan),
              method: :delete,
              data: { confirm: "Are you sure?" } %>
-<br>
-<%= link_to "Generate shopping List", meal_plan_shopping_list_path(@meal_plan) %>
+
+<h2>Shopping list</h2>
+<ul>
+  <% @meal_plan.shopping_list_items.each do |shopping_list_item| %>
+    <li>
+      <%= shopping_list_item[:food_item_name] %>
+      <%= shopping_list_item[:quantity] %>
+      <%= shopping_list_item[:food_item_unit] %>
+    </li>
+  <% end %>
 </ul>
 
 <h2>Meals (<%= link_to "edit notes", edit_meal_plan_path(@meal_plan) %>)</h2>
