@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_01_10_131114) do
+ActiveRecord::Schema.define(version: 2022_01_10_135108) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -80,24 +80,6 @@ ActiveRecord::Schema.define(version: 2022_01_10_131114) do
     t.index ["meal_plan_id"], name: "index_shopping_basket_items_on_meal_plan_id"
   end
 
-  create_table "shopping_list_items", force: :cascade do |t|
-    t.bigint "shopping_list_id", null: false
-    t.bigint "food_item_id", null: false
-    t.decimal "quantity"
-    t.boolean "done"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["food_item_id"], name: "index_shopping_list_items_on_food_item_id"
-    t.index ["shopping_list_id"], name: "index_shopping_list_items_on_shopping_list_id"
-  end
-
-  create_table "shopping_lists", force: :cascade do |t|
-    t.bigint "meal_plan_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["meal_plan_id"], name: "index_shopping_lists_on_meal_plan_id"
-  end
-
   add_foreign_key "ingredients", "food_items"
   add_foreign_key "ingredients", "recipes"
   add_foreign_key "meal_plan_days", "meal_plans"
@@ -105,7 +87,4 @@ ActiveRecord::Schema.define(version: 2022_01_10_131114) do
   add_foreign_key "meals", "recipes"
   add_foreign_key "shopping_basket_items", "food_items"
   add_foreign_key "shopping_basket_items", "meal_plans"
-  add_foreign_key "shopping_list_items", "food_items"
-  add_foreign_key "shopping_list_items", "shopping_lists"
-  add_foreign_key "shopping_lists", "meal_plans"
 end
