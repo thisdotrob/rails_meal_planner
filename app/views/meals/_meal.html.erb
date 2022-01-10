@@ -1,4 +1,4 @@
 <p>
   <%= meal.eat_at.strftime "%H:%M" %> (<%= meal.title %>): <%= meal.recipe.title %>
-  <%= link_to "Destroy", meal_path(meal), method: :delete %>
+  (<%= link_to "delete", meal_path(meal), method: :delete %>)
 </p>

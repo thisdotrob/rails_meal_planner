@@ -1,20 +1,12 @@
 <h1>MealPlan <%= @meal_plan.date_range.min %> - <%= @meal_plan.date_range.max %> </h1>
-
-<ul>
-  <li><%= link_to "Edit", edit_meal_plan_path(@meal_plan) %></li>
-  <li><%= link_to "Destroy", meal_plan_path(@meal_plan),
-                  method: :delete,
-                  data: { confirm: "Are you sure?" } %></li>
-  <li><%= link_to "Shopping List", meal_plan_shopping_list_path(@meal_plan) %></li>
+<%= link_to "Destroy", meal_plan_path(@meal_plan),
+             method: :delete,
+             data: { confirm: "Are you sure?" } %>
+<br>
+<%= link_to "Generate shopping List", meal_plan_shopping_list_path(@meal_plan) %>
 </ul>
 
-<h2>Meals</h2>
-
-
-<ul>
-<% @meal_plan.date_range.each do |date| %>
-  <li>
-    <%= render @meal_plan.meal_plan_days.find { |meal_plan_day| meal_plan_day.date == date } %>
-  </li>
+<h2>Meals (<%= link_to "edit notes", edit_meal_plan_path(@meal_plan) %>)</h2>
+<% @meal_plan.meal_plan_days.each do |meal_plan_day| %>
+  <%= render meal_plan_day %>
 <% end %>
-</ul>

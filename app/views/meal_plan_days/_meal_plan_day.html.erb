@@ -1,10 +1,8 @@
 <h3>
   <%= link_to meal_plan_day.date, meal_plan_day %>
   <%= meal_plan_day.date.strftime("%a") %>
-  <%= "(#{meal_plan_day.note})" if meal_plan_day.note != '' %>
+  <i><%= "(#{meal_plan_day.note})" if meal_plan_day.note != '' %></i>
+  (<%= link_to "add meal", new_meal_plan_day_meal_path(meal_plan_day) %>)
+  (<%= link_to "copy", copy_meal_plan_day_path(meal_plan_day), method: :post %>)
 </h3>
 <%= render meal_plan_day.meals %>
-<ul>
-  <li><%= link_to "Add Meal", new_meal_plan_day_meal_path(meal_plan_day) %></li>
-  <li><%= link_to "Copy to rest of MealPlan", copy_meal_plan_day_path(meal_plan_day), method: :post %></li>
-</ul>
