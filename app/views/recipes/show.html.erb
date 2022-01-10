@@ -3,15 +3,15 @@
 <h3>Instructions</h3>
 <p><%= @recipe.instructions %></p>
 
-<h3>Ingredients</h3>
-<ul>
-  <%= render partial: @recipe.ingredients, locals: {editable: false} %>
-</ul>
-
 <h3>Nutrition (per serving)</h3>
 <ul>
   <li>Calories: <%= @recipe.calories %></li>
   <li>Carbs: <%= @recipe.carbs %></li>
   <li>Protein: <%= @recipe.protein %></li>
   <li>Fat: <%= @recipe.fat %></li>
+</ul>
+
+<h3>Ingredients</h3>
+<ul>
+  <%= render partial: @recipe.ingredients, locals: {editable: false} %>
 </ul>
