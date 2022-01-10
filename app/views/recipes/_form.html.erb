@@ -1,54 +1,38 @@
 <%= form_with model: recipe do |form| %>
-  <div>
-    <%= form.label :title %><br>
+  <% recipe.errors.full_messages.each do |message| %>
+    <p><%= message %></p>
+  <% end %>
+
+  <p>
+    <%= form.label :title %>
+    <br>
     <%= form.text_field :title %>
-    <% recipe.errors.full_messages_for(:title).each do |message| %>
-      <div><%= message %></div>
-    <% end %>
-  </div>
+  </p>
 
-  <div>
-    <%= form.label :instructions %><br>
-    <%= form.text_area :instructions %><br>
-    <% recipe.errors.full_messages_for(:instructions).each do |message| %>
-      <div><%= message %></div>
-    <% end %>
-  </div>
+  <h3><%= form.label :instructions %></h3>
+  <%= form.text_area :instructions %>
 
-  <div>
-    <%= form.label :calories %><br>
-    <%= form.text_area :calories %><br>
-    <% recipe.errors.full_messages_for(:calories).each do |message| %>
-      <div><%= message %></div>
-    <% end %>
-  </div>
+  <h3>Nutrition</h3>
+  <p>
+    <%= form.label :calories %>
+    <br>
+    <%= form.text_field :calories %>
+  </p>
+  <p>
+    <%= form.label :carbs %>
+    <br>
+    <%= form.text_field :carbs %>
+  </p>
+  <p>
+    <%= form.label :protein %>
+    <br>
+    <%= form.text_field :protein %>
+  </p>
+  <p>
+    <%= form.label :fat %>
+    <br>
+    <%= form.text_field :fat %>
+  </p>
 
-  <div>
-    <%= form.label :carbs %><br>
-    <%= form.text_area :carbs %><br>
-    <% recipe.errors.full_messages_for(:carbs).each do |message| %>
-      <div><%= message %></div>
-    <% end %>
-  </div>
-
-  <div>
-    <%= form.label :protein %><br>
-    <%= form.text_area :protein %><br>
-    <% recipe.errors.full_messages_for(:protein).each do |message| %>
-      <div><%= message %></div>
-    <% end %>
-  </div>
-
-  <div>
-    <%= form.label :fat %><br>
-    <%= form.text_area :fat %><br>
-    <% recipe.errors.full_messages_for(:fat).each do |message| %>
-      <div><%= message %></div>
-    <% end %>
-  </div>
-
-  <div>
-    <%= form.submit %>
-  </div>
+  <%= form.submit %>
 <% end %>
-

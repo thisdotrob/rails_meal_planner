@@ -2,8 +2,7 @@
 
 <%= render "form", recipe: @recipe %>
 
-<h2>Ingredients</h2>
+<h3>Ingredients (<%= link_to "add", new_recipe_ingredient_path(@recipe) %>)</h3>
 <ul>
   <%= render partial: @recipe.ingredients, locals: {editable: true} %>
 </ul>
-<%= link_to "New Ingredient", new_recipe_ingredient_path(@recipe) %>
