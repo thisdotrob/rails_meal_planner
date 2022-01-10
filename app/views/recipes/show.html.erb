@@ -15,8 +15,5 @@ Fat: <%= @recipe.fat %><br/>
 
 <ul>
   <li><%= link_to "Edit", edit_recipe_path(@recipe) %></li>
-  <li><%= link_to "Destroy", recipe_path(@recipe),
-                  method: :delete,
-                  data: { confirm: "Are you sure?" } %></li>
 </ul>
 
