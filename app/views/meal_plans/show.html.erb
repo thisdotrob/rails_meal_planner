@@ -9,23 +9,26 @@
   </tr>
   <% @meal_plan.shopping_list_items.each do |shopping_list_item| %>
     <% if shopping_list_item[:shopping_basket_item] %>
-      <tr>
-        <td><strike><%= shopping_list_item[:food_item_name] %></strike></td>
-        <td><strike><%= shopping_list_item[:quantity] %><%= shopping_list_item[:food_item_unit] %></strike></td>
-        <td>
-          <button>
-            <%= link_to "Untick",
-                        meal_plan_shopping_basket_item_path(@meal_plan, shopping_list_item[:shopping_basket_item]),
-                        method: :delete %>
-          </button>
-        </td>
-      </tr>
+      <% if !@hide_items_in_basket %>
+        <tr>
+          <td><strike><%= shopping_list_item[:food_item_name] %></strike></td>
+          <td><strike><%= shopping_list_item[:quantity] %><%= shopping_list_item[:food_item_unit] %></strike></td>
+          <td>
+            <button>
+              <%= link_to "Untick",
+                          meal_plan_shopping_basket_item_path(@meal_plan, shopping_list_item[:shopping_basket_item]),
+                          method: :delete %>
+            </button>
+          </td>
+        </tr>
+      <% end %>
     <% else %>
       <tr>
         <td><%= shopping_list_item[:food_item_name] %></td>
         <td><%= shopping_list_item[:quantity] %><%= shopping_list_item[:food_item_unit] %></td>
         <td>
           <%= form_with model: [@meal_plan, ShoppingBasketItem] do |form| %>
+            <%= form.hidden_field :hide_items_in_basket, value: @hide_items_in_basket %>
             <%= form.hidden_field :food_item_id, value: shopping_list_item[:food_item_id] %>
             <%= form.submit "Tick" %>
           <% end %>
@@ -34,6 +37,12 @@
     <% end %>
   <% end %>
 </table>
+
+<% if @hide_items_in_basket %>
+  <%= link_to "show items in basket", meal_plan_path(@meal_plan) %>
+<% else %>
+  <%= link_to "Hide items in basket", meal_plan_path(@meal_plan, hide_items_in_basket: true) %>
+<% end %>
 
 <h2>Meals (<%= link_to "edit notes", edit_meal_plan_path(@meal_plan) %>)</h2>
 <% @meal_plan.meal_plan_days.each do |meal_plan_day| %>

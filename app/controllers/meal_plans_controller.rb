@@ -5,6 +5,7 @@ class MealPlansController < ApplicationController
 
   def show
     @meal_plan = MealPlan.find(params[:id])
+    @hide_items_in_basket = params[:hide_items_in_basket] == 'true'
   end
 
   def new
