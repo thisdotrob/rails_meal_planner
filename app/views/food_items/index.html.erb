@@ -3,10 +3,29 @@
 <ul>
   <% @food_items.each do |food_item| %>
     <li>
-      <%= link_to food_item.name, food_item %>
+      <% if food_item.deleted %>
+        <%= form_with url: food_item_path(food_item), method: :patch do |form| %>
+          <%= fields_for :query do |query_params_form| %>
+            <%= query_params_form.hidden_field :show_deleted, value: @show_deleted %>
+          <% end %>
+          <%= fields_for food_item do |food_item_form| %>
+            <%= food_item_form.hidden_field :deleted, value: false %>
+            <%= food_item.name %> (<%= form.submit "restore" %>)
+          <% end %>
+        <% end %>
+      <% else %>
+        <%= food_item.name %> (<%= link_to "delete", food_item_path(food_item, show_deleted: @show_deleted), method: :delete %>)
+      <% end %>
     </li>
   <% end %>
 </ul>
 
-<%= link_to "New Food Item", new_food_item_path %>
+<% if @show_deleted %>
+  <%= link_to "Hide deleted", food_items_path(show_deleted: false) %>
+<% else %>
+  <%= link_to "Show deleted", food_items_path(show_deleted: true) %>
+<% end %>
 
+<br>
+
+<%= link_to "New Food Item", new_food_item_path %>
