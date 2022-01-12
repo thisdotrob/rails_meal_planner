@@ -19,7 +19,7 @@ class FoodItemsController < ApplicationController
       if params[:redirect]
         redirect_to params[:redirect] + "?food_item_id=#{@food_item.id}"
       else
-        redirect_to @food_item
+        redirect_to food_items_path
       end
     else
       render :new
