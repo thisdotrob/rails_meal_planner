@@ -5,4 +5,4 @@
   (<%= link_to "add meal", new_meal_plan_day_meal_path(meal_plan_day) %>)
   (<%= link_to "copy", copy_meal_plan_day_path(meal_plan_day), method: :post %>)
 </h3>
-<%= render meal_plan_day.meals %>
+<%= render meal_plan_day.meals.sort_by { |m| m.eat_at } %>
